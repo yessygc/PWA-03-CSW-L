@@ -5,13 +5,23 @@ if ( navigator.serviceWorker ) {
     navigator.serviceWorker.register('/sw.js')
             .then( reg => {
 
-                setTimeout(() => {
+                // setTimeout(() => {
 
-                    reg.sync.register('posteo-gatitos');
-                    console.log('Se enviaron fotos de gatitos al server');
-                }, 3000);
-                
+                //    reg.sync.register('posteo-gatitos');
+                //    console.log('Se enviaron fotos de gatitos al server');
+                // }, 3000);
+
+                Notification.requestPermission().then( result => {
+
+                    console.log(result);
+                    reg.showNotification('Hola Mundo!');
+            
+                });
+
             });
+
+
+    
 }
 
 
