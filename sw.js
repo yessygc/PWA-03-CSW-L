@@ -12,7 +12,7 @@ self.addEventListener('install', event => {
             console.log('SW: Instalaciones terminadas');
             self.skipWaiting();
             resolve();
-        }, 1000 );
+        }, 1 );
     });
 
 
@@ -27,3 +27,18 @@ self.addEventListener('activate', event => {
 
     console.log('SW2: Activo y Listo para controlar la app');
 });
+
+// FETCH: Manejo de peticiones HTTP
+self.addEventListener('fetch', event => {
+
+    // Aplicar estrategias del cache
+    console.log('SW:', event.request.url);
+
+    if ( event.request.url.includes('https://reqres.in/') ) {
+
+        const resp = new Response(`{ ok: false, mensaje: 'jajaja' }`);
+
+        event.respondWith( resp );
+    }
+
+})
